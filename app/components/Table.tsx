@@ -1,18 +1,30 @@
+import Item from "./Item"
+
 type Column = {
   name: string
   id: string
 }
 
-type Row = {
-  id: string
-  name: string
-  role: string
-  email: string
-  phone: string
+export type Row = {
+  objectid: string
+  applicant: string
+  facilitytype: string
+  cnn: string
+  locationdescription: string
   address: string
-  city: string
-  state: string
-  zip: string
+  blocklot: string
+  block: string
+  lot: string
+  permit: string
+  status: string
+  x: string
+  y: string
+  latitude: string
+  longitude: string
+  schedule: string
+  received: string
+  priorpermit: string
+  expirationdate: string
 }
 
 type TableProps = {
@@ -21,6 +33,8 @@ type TableProps = {
 }
 
 const Table = ({ columns, rows }: TableProps) => {
+
+
   return (
     <table className="min-w-full border divide-y divide-gray-200">
       <thead className="bg-gray-50">
@@ -36,32 +50,7 @@ const Table = ({ columns, rows }: TableProps) => {
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
         {rows.map((row) => (
-          <tr key={row.id}>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.name}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.role}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.email}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.phone}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.address}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.city}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.state}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {row.zip}
-            </td>
-          </tr>
+            <Item row={row as Row} />
         ))}
       </tbody>
     </table>
