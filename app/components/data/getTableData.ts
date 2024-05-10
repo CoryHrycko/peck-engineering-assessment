@@ -23,16 +23,16 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     let data: Response
     let url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
     
-    // if (location?.lat && location?.lng) {
-    //   // url = `${url}%20where=within_circle(location,%20${location.lat},%20${location.lng}`
-    //   url = url= `https://data.sfgov.org/api/id/rqzj-sfat.json?where=within_circle(location,%20${location.lat},%20${location.lng}`
+    if (location?.lat && location?.lng) {
+      // url = `${url}&$where=within_circle(location,%20${location.lat},%20${location.lng}`
+      url = url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$where=within_circle(location,%20${location.lat},%20${location.lng}`
 
-    //   if (radius) {
-    //     url = `${url},%20${radius}`
-    //   }
+      if (radius) {
+        url = `${url},%20${radius})`
+      }
 
-    //   url = `${url})$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
-    // }
+      url = `${url}%20offset%20${offset}%20limit%20${limit}`
+    }
 
     console.log(url)
     data = await fetch(url)

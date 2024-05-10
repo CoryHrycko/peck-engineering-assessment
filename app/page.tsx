@@ -22,16 +22,13 @@ export default async function Home({
       lat: searchParams?.lat,
       lng: searchParams?.lng,
     },
-    parseInt(searchParams?.radius ?? '50000'),
+    parseInt(searchParams?.radius ?? '5000000'),
   )
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <GeolocationGetter />
-      {/* <div className="w-full items-center justify-between font-mono text-sm lg:flex"> */}
-      {/* <div className=""> */}
       <Table columns={columns} rows={rows} />
-      {/* </div> */}
       <PaginationButtons count={count} />
     </main>
   )
