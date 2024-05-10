@@ -1,3 +1,4 @@
+import Columns from './Columns'
 import Item from './Item'
 import PaginationButtons from './PaginationButtons'
 
@@ -45,17 +46,9 @@ const Table = ({ columns, rows, count }: TableProps) => {
 
   return (
     <>
-      <table className="min-w-fit border divide-y divide-gray-200">
+      <table className="min-w-fit border divide-y divide-gray-200 text-left">
         <thead className="bg-gray-50">
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={column.id}
-                className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bold">
-                {column.name}
-              </th>
-            ))}
-          </tr>
+          <Columns columns={columns} />
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {rows.map((row) => (

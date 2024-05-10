@@ -1,4 +1,4 @@
-const getTableData = async (offset = 0, limit = 100) => {
+const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 'asc') => {
   //    Quries to implement
   //    1. Get all the data from the table
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20limit%20100
@@ -34,15 +34,38 @@ const getTableData = async (offset = 0, limit = 100) => {
     return data.json()
   }
 
-  const count = await getCountData()
-  const rowsFromAPI = await getRowData()
-  const columnsFromAPI = await getColumnData()
+  let count = 0
+  let rowsFromAPI = []
+  let columnsFromAPI = []
+
+  try {
+  count = await getCountData()
+  } catch (error) {
+    console.log(error)
+  }
+
+  try {
+    rowsFromAPI = await getRowData()
+  } catch (error) {
+    console.log(error)
+  }
+
+  try {
+    columnsFromAPI = await getColumnData()
+  } catch (error) {
+    console.log(error)
+  }
+
+  function insertSpaceInCamelCase(str: string) {
+    return str.replace(/([A-Z])/g, ' $1').trim();
+}
 
   const columns = columnsFromAPI.columns
     .map((c: any) => {
-      return { name: c.name, id: c.name }
+      return { name: insertSpaceInCamelCase(c.name), id: c.name }
     })
-    .slice(0, -10)
+    .slice(0, -9)
+    .filter((c: any) => c.name !== 'Food Items')
 
   const rows = rowsFromAPI
 

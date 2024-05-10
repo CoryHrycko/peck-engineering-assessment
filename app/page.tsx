@@ -1,6 +1,6 @@
 import GeolocationGetter from './components/GeolocationGetter'
 import Table from './components/Table'
-import getTableData from './components/getTableData'
+import getTableData from './components/data/getTableData'
 
 export default async function Home({
   searchParams,
@@ -15,8 +15,6 @@ export default async function Home({
     parseInt(searchParams?.offset ?? '0'),
     parseInt(searchParams?.limit ?? '100'),
   )
-
-
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
