@@ -59,7 +59,7 @@ const Table = ({ columns, rows, count }: TableProps) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {rows.map((row) => (
-            <Item row={row as Row} />
+            <Item key={row.objectid} row={row} />
           ))}
         </tbody>
       </table>
