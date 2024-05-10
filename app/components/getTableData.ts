@@ -34,16 +34,10 @@ const getTableData = async (offset = 0, limit = 100) => {
     return data.json()
   }
 
-  // console.log('getColumnData', getColumnData())
-  // console.log('getRowData', getRowData())
 
   const count = await getCountData()
   const rowsFromAPI = await getRowData()
   const columnsFromAPI = await getColumnData()
-
-  // console.log('getCountData',dun)
-  //   console.log('rowsFromAPI', rowsFromAPI[0])
-  // console.log('columnsFromAPI',columnsFromAPI.columns.map((c: any) => c.name))
 
   const columns = columnsFromAPI.columns
     .map((c: any) => {

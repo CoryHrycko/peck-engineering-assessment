@@ -1,5 +1,5 @@
-import Buttons from './Buttons'
 import Item from './Item'
+import PaginationButtons from './PaginationButtons'
 
 type Column = {
   name: string
@@ -31,9 +31,10 @@ export type Row = {
 type TableProps = {
   columns: Column[]
   rows: Row[]
+  count: number
 }
 
-const Table = ({ columns, rows }: TableProps) => {
+const Table = ({ columns, rows, count }: TableProps) => {
   if (columns.length === 0) {
     return null
   }
@@ -62,7 +63,7 @@ const Table = ({ columns, rows }: TableProps) => {
           ))}
         </tbody>
       </table>
-         <Buttons />
+      <PaginationButtons count={count} />
     </div>
   )
 }
