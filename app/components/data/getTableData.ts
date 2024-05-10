@@ -9,7 +9,7 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20100%20limit%20100
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20order%20by%20%60objectid%60%20asc%20limit%20100
   //    %20order%20by%20%60objectid%60%20asc%20
-  // $where=within_circle(report_location,%2047.59815,%20-122.334540,%20500)
+  //    $where=within_circle(report_location,%2047.59815,%20-122.334540,%20500)
 
   async function getColumnData() {
     const data = await fetch(

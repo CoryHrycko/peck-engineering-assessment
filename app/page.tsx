@@ -28,6 +28,7 @@ export default async function Home({
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <GeolocationGetter />
+      <PaginationButtons count={count} />
       <Table columns={columns} rows={rows} />
       <PaginationButtons count={count} />
     </main>
