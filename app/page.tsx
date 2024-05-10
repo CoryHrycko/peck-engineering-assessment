@@ -1,4 +1,5 @@
 import GeolocationGetter from './components/GeolocationGetter'
+import PaginationButtons from './components/PaginationButtons'
 import Table from './components/Table'
 import getTableData from './components/data/getTableData'
 
@@ -27,9 +28,11 @@ export default async function Home({
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <GeolocationGetter />
-      <div className="w-full items-center justify-between font-mono text-sm lg:flex">
-        <Table columns={columns} rows={rows} count={count} />
-      </div>
+      {/* <div className="w-full items-center justify-between font-mono text-sm lg:flex"> */}
+      {/* <div className=""> */}
+      <Table columns={columns} rows={rows} />
+      {/* </div> */}
+      <PaginationButtons count={count} />
     </main>
   )
 }

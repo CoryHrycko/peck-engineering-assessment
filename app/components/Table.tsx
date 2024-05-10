@@ -1,6 +1,7 @@
 import Columns from './Columns'
 import Item from './Item'
 import PaginationButtons from './PaginationButtons'
+import RowItems from './RowItems'
 
 type Column = {
   name: string
@@ -32,10 +33,9 @@ export type Row = {
 type TableProps = {
   columns: Column[]
   rows: Row[]
-  count: number
 }
 
-const Table = ({ columns, rows, count }: TableProps) => {
+const Table = ({ columns, rows }: TableProps) => {
   if (columns.length === 0) {
     return null
   }
@@ -54,16 +54,11 @@ const Table = ({ columns, rows, count }: TableProps) => {
   console.log(rows)
   return (
     <>
-      <table className="min-w-fit border divide-y divide-gray-200 text-left">
-        <thead className="bg-gray-50">
-          <Columns columns={columns} />
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {rows &&
-            rows?.map((row: Row) => <Item key={row.objectid} row={row} />)}
-        </tbody>
+      {/* <table className="min-w-fit border divide-y divide-gray-200 text-left"> */}
+      <table className="table-fixed">
+        <Columns columns={columns} />
+        <RowItems rows={rows} />
       </table>
-      <PaginationButtons count={count} />
     </>
   )
 }
