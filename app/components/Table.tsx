@@ -51,7 +51,7 @@ const Table = ({ columns, rows, count }: TableProps) => {
       </div>
     )
   }
-console.log(rows)
+  console.log(rows)
   return (
     <>
       <table className="min-w-fit border divide-y divide-gray-200 text-left">
