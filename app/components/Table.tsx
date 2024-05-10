@@ -44,7 +44,7 @@ const Table = ({ columns, rows, count }: TableProps) => {
   }
 
   return (
-    <div className="flex-col justify-center">
+    <>
       <table className="min-w-fit border divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -64,7 +64,7 @@ const Table = ({ columns, rows, count }: TableProps) => {
         </tbody>
       </table>
       <PaginationButtons count={count} />
-    </div>
+    </>
   )
 }
 

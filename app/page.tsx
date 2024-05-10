@@ -16,7 +16,7 @@ export default async function Home({
   )
 
   return (
-    <main className="flex flex-col items-center justify-between p-24 %">
+    <main className="flex flex-col items-center justify-between p-24">
       <div className="w-full items-center justify-between font-mono text-sm lg:flex">
         <Table columns={columns} rows={rows} count={count} />
       </div>
