@@ -23,6 +23,10 @@ function GeolocationGetter() {
     navigator.geolocation.getCurrentPosition(success)
   }, [])
 
+  if (!position) {
+    return <p>Geolocation may not supported by your browser. Searching...</p>
+  }
+
   return (
     <div>
       {position && (
@@ -30,9 +34,6 @@ function GeolocationGetter() {
           Latitude: {position.coords.latitude} Longitude:{' '}
           {position.coords.longitude}
         </p>
-      )}
-      {!position && (
-        <p>Geolocation is not supported by your browser. Searching...</p>
       )}
     </div>
   )
