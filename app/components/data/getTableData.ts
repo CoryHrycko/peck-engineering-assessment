@@ -46,7 +46,7 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     return data.json()
   }
 
-  let count = 0
+  let count:[{ __count_alias__: number; }] = [{ __count_alias__: 0 }]
   let rowsFromAPI
   let columnsFromAPI
 
