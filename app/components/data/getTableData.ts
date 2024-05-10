@@ -1,4 +1,4 @@
-const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 'asc') => {
+const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, lng?: string}, radius?:number) => {
   //    Quries to implement
   //    1. Get all the data from the table
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20limit%20100
@@ -9,6 +9,7 @@ const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20100%20limit%20100
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20order%20by%20%60objectid%60%20asc%20limit%20100
   //    %20order%20by%20%60objectid%60%20asc%20
+  // $where=within_circle(report_location,%2047.59815,%20-122.334540,%20500)
 
   async function getColumnData() {
     const data = await fetch(
@@ -19,9 +20,23 @@ const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 
   }
 
   async function getRowData() {
-    const data = await fetch(
-      `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`,
-    )
+    let data: Response
+    let url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
+    
+    // if (location?.lat && location?.lng) {
+    //   // url = `${url}%20where=within_circle(location,%20${location.lat},%20${location.lng}`
+    //   url = url= `https://data.sfgov.org/api/id/rqzj-sfat.json?where=within_circle(location,%20${location.lat},%20${location.lng}`
+
+    //   if (radius) {
+    //     url = `${url},%20${radius}`
+    //   }
+
+    //   url = `${url})$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
+    // }
+
+    console.log(url)
+    data = await fetch(url)
+
 
     return data.json()
   }
@@ -35,8 +50,8 @@ const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 
   }
 
   let count = 0
-  let rowsFromAPI = []
-  let columnsFromAPI = []
+  let rowsFromAPI
+  let columnsFromAPI
 
   try {
   count = await getCountData()
@@ -46,6 +61,7 @@ const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 
 
   try {
     rowsFromAPI = await getRowData()
+    // console.log(rowsFromAPI)
   } catch (error) {
     console.log(error)
   }
@@ -67,9 +83,8 @@ const getTableData = async (offset = 0, limit = 100, sort = 'objectid', order = 
     .slice(0, -9)
     .filter((c: any) => c.name !== 'Food Items')
 
-  const rows = rowsFromAPI
-
-  return { columns, rows, count }
+  console.log(rowsFromAPI)
+  return { columns, rows: rowsFromAPI, count }  
 }
 
 export default getTableData

@@ -44,6 +44,14 @@ const Table = ({ columns, rows, count }: TableProps) => {
     return null
   }
 
+  if (!rows) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <p className="text-center">No data found</p>
+      </div>
+    )
+  }
+console.log(rows)
   return (
     <>
       <table className="min-w-fit border divide-y divide-gray-200 text-left">
@@ -51,9 +59,8 @@ const Table = ({ columns, rows, count }: TableProps) => {
           <Columns columns={columns} />
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {rows.map((row) => (
-            <Item key={row.objectid} row={row} />
-          ))}
+          {rows &&
+            rows?.map((row: Row) => <Item key={row.objectid} row={row} />)}
         </tbody>
       </table>
       <PaginationButtons count={count} />
