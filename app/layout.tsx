@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import GeolocationGetter from './components/GeolocationGetter'
 
 const inter = Inter({ subsets: ['latin'] })
 
