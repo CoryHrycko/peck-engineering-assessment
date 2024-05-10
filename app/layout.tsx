@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + 'bg-emerald-500'}>{children}</body>
+      <body className={inter.className + 'bg-emerald-500 flex flex-col min-h-screen'}>
+        {children}
+      </body>
     </html>
   )
 }
