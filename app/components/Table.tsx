@@ -51,7 +51,6 @@ const Table = ({ columns, rows }: TableProps) => {
       </div>
     )
   }
-  console.log(rows)
   return (
     <>
       {/* <table className="min-w-fit border divide-y divide-gray-200 text-left"> */}

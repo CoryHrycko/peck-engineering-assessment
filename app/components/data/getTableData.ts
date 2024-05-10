@@ -24,7 +24,6 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     let url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
     
     if (location?.lat && location?.lng) {
-      // url = `${url}&$where=within_circle(location,%20${location.lat},%20${location.lng}`
       url = url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$where=within_circle(location,%20${location.lat},%20${location.lng}`
 
       if (radius) {
@@ -34,9 +33,7 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
       url = `${url}%20offset%20${offset}%20limit%20${limit}`
     }
 
-    console.log(url)
     data = await fetch(url)
-
 
     return data.json()
   }
@@ -61,7 +58,6 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
 
   try {
     rowsFromAPI = await getRowData()
-    // console.log(rowsFromAPI)
   } catch (error) {
     console.log(error)
   }
@@ -83,7 +79,6 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     .slice(0, -9)
     .filter((c: any) => c.name !== 'Food Items')
 
-  console.log(rowsFromAPI)
   return { columns, rows: rowsFromAPI, count }  
 }
 
