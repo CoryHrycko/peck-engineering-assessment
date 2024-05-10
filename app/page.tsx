@@ -5,11 +5,15 @@ export default async function Home({
   searchParams,
 }: {
   searchParams?: {
-    query?: string;
-    offset?: string;
-  };
+    query?: string
+    offset?: string
+    limit?: string
+  }
 }) {
-  const { columns, rows, count } = await getTableData( parseInt(searchParams?.offset ?? '0'))
+  const { columns, rows, count } = await getTableData(
+    parseInt(searchParams?.offset ?? '0'),
+    parseInt(searchParams?.limit ?? '100'),
+  )
 
   return (
     <main className="flex flex-col items-center justify-between p-24 %">

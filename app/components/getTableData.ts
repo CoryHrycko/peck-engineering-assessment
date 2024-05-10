@@ -7,8 +7,8 @@ const getTableData = async (offset = 0, limit = 100) => {
   //    3. Get the data for column filtering = data.columns
   //    https://data.sfgov.org/api/views/rqzj-sfat.json?read_from_nbe=true&version=2.1
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20100%20limit%20100
-  //   https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20order%20by%20%60objectid%60%20asc%20limit%20100
-  // %20order%20by%20%60objectid%60%20asc%20
+  //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20order%20by%20%60objectid%60%20asc%20limit%20100
+  //    %20order%20by%20%60objectid%60%20asc%20
 
   async function getColumnData() {
     const data = await fetch(
@@ -20,7 +20,7 @@ const getTableData = async (offset = 0, limit = 100) => {
 
   async function getRowData() {
     const data = await fetch(
-      `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20100`,
+      `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`,
     )
 
     return data.json()
@@ -33,7 +33,6 @@ const getTableData = async (offset = 0, limit = 100) => {
 
     return data.json()
   }
-
 
   const count = await getCountData()
   const rowsFromAPI = await getRowData()

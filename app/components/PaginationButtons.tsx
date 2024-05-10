@@ -5,8 +5,8 @@ import { useState, MouseEvent } from 'react'
 const PaginationButtons = ({ count = 0 }: { count: number }) => {
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams)
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const pathname = usePathname()
+  const { replace } = useRouter()
 
   const urlOffset = params.get('offset')
   const [offset, setOffset] = useState(urlOffset ? parseInt(urlOffset) : 0)
@@ -22,7 +22,7 @@ const PaginationButtons = ({ count = 0 }: { count: number }) => {
       params.set('offset', (offset + 100).toString())
       setOffset(offset + 100)
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`)
   }
 
   return (
