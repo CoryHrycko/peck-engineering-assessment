@@ -27,6 +27,7 @@ export default async function Home({
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
+      <h1 className="text-4xl font-bold">Truck Tracker</h1>
       <GeolocationGetter />
       <PaginationButtons count={count} />
       <Table columns={columns} rows={rows} />

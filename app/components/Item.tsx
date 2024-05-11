@@ -1,7 +1,9 @@
+import ClientItem from './ClientItem'
 import type { Row } from './Table'
 
 const Item = ({ row }: { row: Row }) => {
-  const style = 'px-6 py-4 text-sm text-gray-700 whitespace-nowrap'
+  const style =
+    'px-6 py-4 text-sm text-gray-700 whitespace-nowrap text-left cursor-pointer'
   const rowKeys = [
     row.objectid,
     row.applicant,
@@ -27,9 +29,7 @@ const Item = ({ row }: { row: Row }) => {
   return (
     <tr key={row.objectid}>
       {rowKeys.map((value, key) => (
-        <td className={style} key={key}>
-          {value}
-        </td>
+        <ClientItem link={row.objectid} key={key} value={value} style={style} />
       ))}
     </tr>
   )
