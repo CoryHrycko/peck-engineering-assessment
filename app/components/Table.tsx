@@ -1,6 +1,4 @@
 import Columns from './Columns'
-import Item from './Item'
-import PaginationButtons from './PaginationButtons'
 import RowItems from './RowItems'
 
 export type Column = {

@@ -1,6 +1,6 @@
 'use client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useState, MouseEvent, use, useEffect } from 'react'
+import { useState, MouseEvent, useEffect } from 'react'
 
 const PaginationButtons = ({
   count,

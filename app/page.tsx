@@ -1,6 +1,6 @@
 import GeolocationGetter from './components/GeolocationGetter'
 import PaginationButtons from './components/PaginationButtons'
-import Table, { Row } from './components/Table'
+import Table from './components/Table'
 import cleanForMainTable from './components/cleanForMainTable'
 import getTableData from './components/data/getTableData'
 

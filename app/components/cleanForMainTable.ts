@@ -1,4 +1,4 @@
-import { Row, Column } from './Table'
+import { Column } from './Table'
 
 const cleanForMainTable = (rows: any[], columns: Column[]) => {
   const mainTableKeys: string[] = [
