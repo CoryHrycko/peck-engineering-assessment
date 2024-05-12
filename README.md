@@ -21,7 +21,7 @@ You will need to have [Node.js](https://nodejs.org/en/) installed to run this pr
 
 This project is open source and available under the [MIT License](LICENSE).
 
-Upon opening the app, you will see a table of food trucks in San Francisco lmited to the first 100 rows and paginated. You can click on a row to see more information about the truck. The app will autoprompt you for your location if you don't have one saved and radius.
+Upon opening the app, you will see a table of food trucks in San Francisco lmited to the first 100 rows and paginated. You can click next and previous buttons to see the respective page. Everything is rendered server side besides the few things that are interactable. You can click on a row to see more information about the truck. The app will autoprompt you for your location if you don't have one saved and radius. Enjoy!
 
 ---
 
