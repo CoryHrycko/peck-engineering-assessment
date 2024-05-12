@@ -3,7 +3,7 @@ import Item from './Item'
 import PaginationButtons from './PaginationButtons'
 import RowItems from './RowItems'
 
-type Column = {
+export type Column = {
   name: string
   id: string
 }
@@ -32,15 +32,17 @@ export type Row = {
 
 type TableProps = {
   columns: Column[]
-  rows: Row[]
+  rows: Row[] | any[] | undefined
+  keysToShow?: string[]
+  mainTable?: boolean
 }
 
-const Table = ({ columns, rows }: TableProps) => {
-  if (columns.length === 0) {
+const Table = ({ columns, rows, mainTable }: TableProps) => {
+  if (!columns || columns.length === 0) {
     return null
   }
 
-  if (rows.length === 0) {
+  if (!rows || rows.length === 0) {
     return null
   }
 
@@ -53,10 +55,9 @@ const Table = ({ columns, rows }: TableProps) => {
   }
   return (
     <>
-      {/* <table className="min-w-fit border divide-y divide-gray-200 text-left"> */}
       <table className="table-fixed">
         <Columns columns={columns} />
-        <RowItems rows={rows} />
+        <RowItems rows={rows} mainTable={mainTable} />
       </table>
     </>
   )

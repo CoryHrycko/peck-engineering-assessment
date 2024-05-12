@@ -32,18 +32,11 @@ export default async function Home({
   )
   const truckId = params?.truck
   const truckData = await getTruckData(truckId)
-  const exactTruckData = truckData[0]
-
-  const iterateOverTruckObject = () => {
-    for (let key in truckData) {
-      return <p key={key}>{truckData[key]}</p>
-    }
-  }
 
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <h1 className="text-4xl font-bold">Truck Tracker</h1>
-      <Table columns={columns} rows={truckData} />
+      <Table columns={columns} rows={truckData} mainTable={false} />
     </main>
   )
 }

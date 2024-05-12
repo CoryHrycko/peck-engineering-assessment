@@ -1,4 +1,9 @@
-const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, lng?: string}, radius?:number) => {
+const getTableData = async (
+  offset = 0,
+  limit = 100,
+  location?: { lat?: string; lng?: string },
+  radius?: number,
+) => {
   //    Quries to implement
   //    1. Get all the data from the table
   //    https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20limit%20100
@@ -21,10 +26,11 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
 
   async function getRowData() {
     let data: Response
-    let url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
-    
+    let url = `https://data.sfgov.org/api/id/rqzj-sfat.json?$query=select%20*%2C%20%3Aid%20offset%20${offset}%20limit%20${limit}`
+
     if (location?.lat && location?.lng) {
-      url = url= `https://data.sfgov.org/api/id/rqzj-sfat.json?$where=within_circle(location,%20${location.lat},%20${location.lng}`
+      url =
+        url = `https://data.sfgov.org/api/id/rqzj-sfat.json?$where=within_circle(location,%20${location.lat},%20${location.lng}`
 
       if (radius) {
         url = `${url},%20${radius})`
@@ -46,12 +52,12 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     return data.json()
   }
 
-  let count:[{ __count_alias__: number; }] = [{ __count_alias__: 0 }]
+  let count: [{ __count_alias__: number }] = [{ __count_alias__: 0 }]
   let rowsFromAPI
   let columnsFromAPI
 
   try {
-  count = await getCountData()
+    count = await getCountData()
   } catch (error) {
     console.log(error)
   }
@@ -69,8 +75,8 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
   }
 
   function insertSpaceInCamelCase(str: string) {
-    return str.replace(/([A-Z])/g, ' $1').trim();
-}
+    return str.replace(/([A-Z])/g, ' $1').trim()
+  }
 
   const columns = columnsFromAPI.columns
     .map((c: any) => {
@@ -79,7 +85,7 @@ const getTableData = async (offset = 0, limit = 100, location?: {lat?: string, l
     .slice(0, -9)
     .filter((c: any) => c.name !== 'Food Items')
 
-  return { columns, rows: rowsFromAPI, count }  
+  return { columns, rows: rowsFromAPI, count }
 }
 
 export default getTableData
