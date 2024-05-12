@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 
 function GeolocationGetter() {
   const [position, setPosition] = useState<GeolocationPosition | undefined>()
@@ -9,6 +9,29 @@ function GeolocationGetter() {
   const params = new URLSearchParams(searchParams)
   const pathname = usePathname()
   const { replace } = useRouter()
+
+  const isInt = (value: any) => {
+    let x;
+    if (isNaN(value)) {
+      return false;
+    }
+    x = parseFloat(value);
+    return (x | 0) === x;
+  }
+
+  const resetRadious = () => {
+    let radius = prompt('Please enter a radius.(enter 5000000 if not sure)')
+    if (radius &&  isInt(radius)) {
+    {
+      params.set('radius', radius)
+      replace(`${pathname}?${params.toString()}`)
+    }
+  }
+}
+
+  const handleResetRadius = () => {
+    resetRadious()
+  }
 
   useEffect(() => {
     const success = (pos: GeolocationPosition) => {
@@ -21,6 +44,10 @@ function GeolocationGetter() {
     }
 
     navigator.geolocation.getCurrentPosition(success)
+  
+    if (!params.get('radius')) {
+      resetRadious()
+    }
   }, [])
 
   if (!position) {
@@ -30,10 +57,18 @@ function GeolocationGetter() {
   return (
     <div>
       {position && (
-        <p>
-          Latitude: {position.coords.latitude} Longitude:{' '}
-          {position.coords.longitude}
-        </p>
+        <>
+          <p>
+            Latitude: {position.coords.latitude} Longitude:{' '}
+            {position.coords.longitude}{' '}
+            <button
+              onClick={() => {
+                handleResetRadius()
+              }}>
+              Reset Radius
+            </button>
+          </p>
+        </>
       )}
     </div>
   )

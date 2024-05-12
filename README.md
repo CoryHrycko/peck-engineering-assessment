@@ -1,3 +1,30 @@
+This is a simple app that shows a table of food trucks in San Francisco.
+
+## Installation
+
+```bash
+npm install
+npm run build
+```
+
+## Usage
+
+```bash
+npm start
+```
+
+## License
+
+MIT © [San Francisco Food Truck](https://github.com/sffoodtrucks/food-truck-table)
+
+You will need to have [Node.js](https://nodejs.org/en/) installed to run this project.
+
+This project is open source and available under the [MIT License](LICENSE).
+
+Upon opening the app, you will see a table of food trucks in San Francisco lmited to the first 100 rows and paginated. You can click on a row to see more information about the truck.
+
+---
+
 # Engineering Challenge
 
 We strive to be a practical and pragmatic team. That extends to the way that we work with you to understand if this team is a great fit for you. We want you to come away with a great understanding of the kind of things that we actually do day to day and what it is like to work in our teams.
