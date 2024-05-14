@@ -15,6 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode
 }>) {
+  //
   return (
     <html lang="en">
       <body className={inter.className + ' bg-indigo-500 flex bg-no-repeat'}>
